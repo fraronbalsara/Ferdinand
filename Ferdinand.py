@@ -3,11 +3,8 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 import time
-from mysql.connector import *
 import random
-import youtube_dl
 from discord import User
-import logging
 import time
 
 Client = discord.Client()
