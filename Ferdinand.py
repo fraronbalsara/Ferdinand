@@ -18,4 +18,12 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name="on %d servers"%(a)))
     print('Bot is online and ready to use.')
 
-client.run(str(os.environ.get('BOT_TOKEN')))
+extensions=['miscellaneous','score','currency','giveaway','clashroyale','translate','casino']
+if __name__ == '__main__':
+    for extension in extensions:
+        try:
+            client.load_extension("cogs."+extension)
+            print(extension," was loaded")
+        except Exception as error:
+            print('{} cannot be loaded. [{}]'.format(extension,error))
+    client.run(str(os.environ.get('BOT_TOKEN')))
