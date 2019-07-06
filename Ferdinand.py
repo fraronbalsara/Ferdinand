@@ -6,6 +6,7 @@ import time
 import random
 from discord import User
 import time
+import os
 
 Client = discord.Client()
 client = commands.Bot(command_prefix = '.')
@@ -17,4 +18,4 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name="on %d servers"%(a)))
     print('Bot is online and ready to use.')
 
-client.run("NTUxMzI2NjI5NzI5OTI3MTg4.D2FEwQ.Gzh06ETEs4CJEMTlHytoNgo1J9s")
+client.run(str(os.environ.get('BOT_TOKEN')))
