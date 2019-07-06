@@ -18,7 +18,7 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name="on %d servers"%(a)))
     print('Bot is online and ready to use.')
 
-extensions=['miscellaneous','score','currency','giveaway','clashroyale','translate','casino']
+extensions=['miscellaneous']
 if __name__ == '__main__':
     for extension in extensions:
         try:
