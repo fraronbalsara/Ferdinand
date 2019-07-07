@@ -76,6 +76,7 @@ class giveaway(commands.Cog):
             for r in existing_roles:
                 if(r.name == "Giveaway"):
                     q = 1
+                    break
                 else:
                     q = 0
             if(q == 0):
@@ -132,6 +133,11 @@ class giveaway(commands.Cog):
                 if(r.name == "Giveaway"):
                     if(message.content == answer):
                         await channel.send("We have a winner 🎉🎉🎉 Congratulations <@%d>"%(author))
+                        b = ctx.message.guild.roles
+                        overwrite = discord.PermissionOverwrite()
+                        overwrite.read_messages = True
+                        overwrite.add_reactions = True
+                        await channel.set_permissions(b[0], overwrite = overwrite)
                         qa_dict.pop(channel_id)
                         Role = discord.utils.get(user.guild.roles, name="Giveaway")
                         for member in message.guild.members:
