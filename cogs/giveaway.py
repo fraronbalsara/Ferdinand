@@ -51,6 +51,7 @@ class giveaway(commands.Cog):
             t = int(t)
             t1 = t*60
             channel = ctx.message.channel.id
+            server = ctx.message.guild.id
             answer = ans
             question = ""
             for i in range(0,len(que)):
