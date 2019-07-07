@@ -77,8 +77,7 @@ class giveaway(commands.Cog):
                     q = 1
                 else:
                     q = 0
-            if(q != 0):
-                author = ctx.message.author
+            if(q == 0):
                 await server.create_role(name="Giveaway")
             for r1 in existing_roles:
                 if(r1.name == "Giveaway"):
