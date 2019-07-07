@@ -1,3 +1,9 @@
+import discord
+from discord.ext.commands import Bot
+from discord.ext import commands
+import asyncio
+import random
+
 class miscellaneous(commands.Cog):
     def __init__(self, client):
         self.client = client
