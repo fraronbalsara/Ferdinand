@@ -1,7 +1,6 @@
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
-from discord.utils import get
 import asyncio
 import time
 import random
@@ -19,7 +18,7 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name="on %d servers"%(a)))
     print('Bot is online and ready to use.')
 
-extensions=['miscellaneous']
+extensions=['miscellaneous','score','currency','giveaway','clashroyale','translate','casino']
 if __name__ == '__main__':
     for extension in extensions:
         try:
