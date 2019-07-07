@@ -1,3 +1,11 @@
+import discord
+from discord.ext.commands import Bot
+from discord.ext import commands
+import asyncio
+from mysql.connector import *
+from discord.utils import get
+import random
+
 giveaway_list = []
 regular_giveaway_dict = {}
 qa_dict = {}
