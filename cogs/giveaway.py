@@ -71,9 +71,9 @@ class giveaway(commands.Cog):
             giveaway_list.append(c)
             await message.add_reaction('🐱')
             existing_roles = ctx.message.guild.roles
+            q = ""
             for r in existing_roles:
                 if(r.name == "Giveaway"):
-                    global q
                     q = 1
                 else:
                     q = 0
