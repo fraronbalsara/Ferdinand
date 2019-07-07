@@ -15,7 +15,7 @@ class giveaway(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permission(manage_roles = True)
+    @commands.has_permissions(manage_roles = True)
     async def regular_giveaway_start(self, ctx, t):
         try:
             t = int(t)
@@ -47,7 +47,7 @@ class giveaway(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
-    @commands.has_permission(manage_roles = True)
+    @commands.has_permissions(manage_roles = True)
     async def qa_giveaway_start(self, ctx, t, ans, *que):
         try:
             t = int(t)
