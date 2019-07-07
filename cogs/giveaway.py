@@ -133,7 +133,7 @@ class giveaway(commands.Cog):
                 if(r.name == "Giveaway"):
                     if(message.content == answer):
                         await channel.send("We have a winner 🎉🎉🎉 Congratulations <@%d>"%(author))
-                        b = ctx.message.guild.roles
+                        b = message.guild.roles
                         overwrite = discord.PermissionOverwrite()
                         overwrite.read_messages = True
                         overwrite.add_reactions = True
