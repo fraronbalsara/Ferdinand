@@ -43,7 +43,7 @@ class giveaway(commands.Cog):
             await ctx.send("Manage Roles permission required")
         except Exception as ve:
             print(ve)
-            await ctx.send("Invalid argument, use help command for help on proper usage of this command.")
+            await ctx.send("Unknown Error.")
 
     @commands.command()
     @commands.guild_only()
@@ -100,7 +100,7 @@ class giveaway(commands.Cog):
             await ctx.send("Manage Roles permission required")
         except Exception as ve:
             print(ve)
-            await ctx.send("Invalid argument, use help command for help on proper usage of this command.")
+            await ctx.send("Unknown Error.")
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
