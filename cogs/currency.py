@@ -14,25 +14,29 @@ class currency(commands.Cog):
 
     @commands.command()
     async def create_account(self, ctx):
-        a=ctx.message.author.id
-        e = datetime.datetime.now().strftime("%d-%m-%y")
-        con = psycopg2.connect(DATABASE_URL, sslmode='require')
-        cur = con.cursor()
-        query="select * from discord_currency where user_id=%d"%(a)
-        cur.execute(query)
-        b=cur.fetchone()
-        if(b != None):
-            await ctx.message.channel.send("Account already exists.")
-            con.close()
-        else:
-            a1 = 100
-            query1="insert into discord_currency values(%d,%d)"%(a,a1)
-            cur.execute(query1)
-            query2 = "insert into currency_daily values(%d,'%s')"%(a,e)
-            cur.execute(query2)
-            con.commit()
-            con.close()
-            await ctx.message.channel.send("Account created and $100 credited as a bonus.")
+        try:
+            a=ctx.message.author.id
+            e = datetime.datetime.now().strftime("%d-%m-%y")
+            con = psycopg2.connect(DATABASE_URL, sslmode='require')
+            cur = con.cursor()
+            query="select * from discord_currency where user_id=%d"%(a)
+            cur.execute(query)
+            b=cur.fetchone()
+            if(b != None):
+                await ctx.message.channel.send("Account already exists.")
+                con.close()
+            else:
+                a1 = 100
+                query1="insert into discord_currency values(%d,%d)"%(a,a1)
+                cur.execute(query1)
+                query2 = "insert into currency_daily values(%d,'%s')"%(a,e)
+                cur.execute(query2)
+                con.commit()
+                con.close()
+                await ctx.message.channel.send("Account created and $100 credited as a bonus.")
+        except Exception as ve:
+            print(ve)
+            await ctx.send("Unknown Error.")
 
     @commands.command()
     async def balance(self, ctx, user: discord.Member=None):
@@ -49,8 +53,9 @@ class currency(commands.Cog):
             b = cur.fetchone()
             con.close()
             await ctx.message.channel.send("Current balance for <@%d> is $%d. <@%d>"%(a,b[1],a1))
-        except:
-            await ctx.message.channel.send("Account doesn't exist or invalid argument, use help command for help on proper usage of this command.")
+        except Exception as ve:
+            print(ve)
+            await ctx.message.channel.send("Account doesn't exist.")
 
     @commands.command()
     async def daily(self, ctx):
@@ -109,8 +114,9 @@ class currency(commands.Cog):
                 await ctx.message.channel.send("Transfer Successful.")
             else:
                 await ctx.message.channel.send("Insufficient balance.")
-        except:
-            await ctx.message.channel.send("Account doesn't exist or invalid arguments, use help command for help on proper usage of this command.")
+        except Exception as ve:
+            print(ve)
+            await ctx.message.channel.send("Account doesn't exist.")
 
 
 def setup(client):
