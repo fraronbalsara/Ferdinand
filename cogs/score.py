@@ -56,7 +56,7 @@ class score(commands.Cog):
             con.close()
         except Exception as ve:
             print(ve)
-            await ctx.message.channel.send("Unknown Error.")
+            await ctx.message.channel.send("Account doesn't exist.")
 
 
 def setup(client):
