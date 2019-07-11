@@ -2,3 +2,4 @@ discord.py
 asyncio
 googletrans
 psycopg2-binary
+profanity
