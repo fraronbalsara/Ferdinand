@@ -157,7 +157,7 @@ class moderation(commands.Cog):
     async def on_message(self, message):
         if((profanity.contains_profanity(message.content) == True) and message.guild.owner != message.author):
             await message.delete()
-            await message.channel.send("Warning! Watch your language <@%d>."%(message.author.id))
+            await message.channel.send(":warning:Warning! Watch your language <@%d>."%(message.author.id))
 
 def setup(client):
     client.add_cog(moderation(client))
