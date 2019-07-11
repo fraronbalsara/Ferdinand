@@ -77,7 +77,7 @@ class currency(commands.Cog):
                 new_balance = d[1] + 100
                 query2="update discord_currency set cash=%d where user_id=%d"%(new_balance,a)
                 cur.execute(query2)
-                query3 = "update discord_daily set date='%s' where user_id=%d"%(b,a)
+                query3 = "update currency_daily set date='%s' where user_id=%d"%(b,a)
                 cur.execute(query3)
                 con.commit()
                 con.close()
