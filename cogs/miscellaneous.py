@@ -129,9 +129,9 @@ class miscellaneous(commands.Cog):
             colour=discord.Colour.blue()
         )
         embed_help.add_field(name='.kick <tag discord user> <reason>(optional)', value='To kick a user with optional argument reason.', inline=True)
-        embed_help.add_field(name='.ban <tag discord user> <reason>(optional)', value='To bam a user with optional argument reason.', inline=True)
+        embed_help.add_field(name='.ban <tag discord user> <reason>(optional)', value='To ban a user with optional argument reason.', inline=True)
         embed_help.add_field(name='.mute <tag discord user> <time>(optional) <reason>(optional)', value='To mute a user with optional argument reason and specified time.', inline=True)
-        embed_help.add_field(name='.unmute <tag discord user> <reason>(optional)', value='To unute a user.', inline=True)
+        embed_help.add_field(name='.unmute <tag discord user> <reason>(optional)', value='To unmute a user.', inline=True)
         await author.send(embed = embed_help)
 
 def setup(client):
