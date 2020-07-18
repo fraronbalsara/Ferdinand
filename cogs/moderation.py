@@ -3,6 +3,9 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 from profanity import profanity
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
 
 class moderation(commands.Cog):
     def __init__(self, client):
@@ -153,9 +156,42 @@ class moderation(commands.Cog):
             print(ve)
             await ctx.send("Unknown error occured.")
 
+    @commands.command()
+    @commands.guild_only()
+    @commands.is_owner()
+    async def profanity_filter_on(self, ctx):
+        server = ctx.message.guild.id
+        con = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cur = con.cursor()
+        query="insert into profanity values(%d)"%(server)
+        cur.execute(query)
+        con.commit()
+        con.close()
+        await ctx.send("Profanity filter has been turned on.")
+
+    @commands.command()
+    @commands.guild_only()
+    @commands.is_owner()
+    async def profanity_filter_off(self, ctx):
+        server = ctx.message.guild.id
+        con = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cur = con.cursor()
+        query="delete from profanity where server_id = %d"%(server)
+        cur.execute(query)
+        con.commit()
+        con.close()
+        await ctx.send("Profanity filter has been turned off.")
+
     @commands.Cog.listener()
     async def on_message(self, message):
-        if((profanity.contains_profanity(message.content) == True) and message.guild.owner != message.author):
+        server = message.guild.id
+        con = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cur = con.cursor()
+        query="select * from profanity where server_id=%d"%(server)
+        cur.execute(query)
+        b = cur.fetchone()
+        con.close()
+        if((profanity.contains_profanity(message.content) == True) and message.guild.owner != message.author and b != None):
             await message.delete()
             await message.channel.send(":warning:Warning! Watch your language <@%d>."%(message.author.id))
 
