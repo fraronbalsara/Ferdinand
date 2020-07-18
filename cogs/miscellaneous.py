@@ -105,7 +105,7 @@ class miscellaneous(commands.Cog):
         embed_help.add_field(name ='.balance <tag discord user>(optional)', value='To check your account balance or the account balance of mentioned user', inline=True)
         embed_help.add_field(name=".transfer <tag discord user> <amount>", value="Transfers given cash from your account to mention user's account.", inline=True)
         embed_help.add_field(name='.giveaway_help', value='Help for giveaway related commands. These commands can only be used by those with manage roles permission in the server.', inline=True)
-        embed_help.add_field(name='.moderation_help', value='Help for moderation related comamnds. This command can only be used by those with manage roles permission in the server.', inline=True)
+        embed_help.add_field(name='.moderation_help', value='Help for moderation related commands. This command can only be used by those with manage roles permission in the server.', inline=True)
         await author.send(embed = embed_help)
 
     @commands.command()
