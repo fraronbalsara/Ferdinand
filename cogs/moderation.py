@@ -3,6 +3,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 from profanity import profanity
+import os
 import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -163,11 +164,18 @@ class moderation(commands.Cog):
         server = ctx.message.guild.id
         con = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = con.cursor()
-        query="insert into profanity values(%d)"%(server)
+        query="select * from profanity where server_id=%d"%(server)
         cur.execute(query)
-        con.commit()
-        con.close()
-        await ctx.send("Profanity filter has been turned on.")
+        b = cur.fetchone()
+        if(b == None):
+            query="insert into profanity values(%d)"%(server)
+            cur.execute(query)
+            con.commit()
+            con.close()
+            await ctx.send("Profanity filter has been turned on.")
+        else:
+            con.close()
+            await ctx.send("Profanity filter is already turned on.")
 
     @commands.command()
     @commands.guild_only()
@@ -176,11 +184,18 @@ class moderation(commands.Cog):
         server = ctx.message.guild.id
         con = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = con.cursor()
-        query="delete from profanity where server_id = %d"%(server)
+        query="select * from profanity where server_id=%d"%(server)
         cur.execute(query)
-        con.commit()
-        con.close()
-        await ctx.send("Profanity filter has been turned off.")
+        b = cur.fetchone()
+        if(b != None):
+            query2="delete from profanity where server_id = %d"%(server)
+            cur.execute(query2)
+            con.commit()
+            con.close()
+            await ctx.send("Profanity filter has been turned off.")
+        else:
+            con.close()
+            await ctx.send("Profanity filter is already turned off.")
 
     @commands.Cog.listener()
     async def on_message(self, message):
