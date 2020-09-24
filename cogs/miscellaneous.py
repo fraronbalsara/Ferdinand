@@ -92,9 +92,9 @@ class miscellaneous(commands.Cog):
             title="```Help- Commands list for Ferdinand.```",
             colour=discord.Colour.blue()
         )
-        embed_help.add_field(name='.ping', value='Returns Pong :ping_pong:', inline=True)
-        embed_help.add_field(name='.toss', value='Returns the value of a random coin toss. Either __heads__ or __tails__', inline=True)
-        embed_help.add_field(name='.dice', value='Returns the value of a random dice roll.', inline=True)
+        embed_help.add_field(name='.ping', value='Returns Pong :ping_pong:', inline=False)
+        embed_help.add_field(name='.toss', value='Returns the value of a random coin toss. Either __heads__ or __tails__', inline=False)
+        embed_help.add_field(name='.dice', value='Returns the value of a random dice roll.', inline=False)
         embed_help.add_field(name='.twoDice', value='Returns the value of two random dice rolls.', inline=True)
         embed_help.add_field(name='.crytsal_ball <question>', value='Returns an answer to the question.', inline=True)
         embed_help.add_field(name='.translate <text>', value='Returns given text translated in English.', inline=True)
