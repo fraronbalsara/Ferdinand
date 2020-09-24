@@ -2,6 +2,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
+import os
 import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
