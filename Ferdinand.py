@@ -26,4 +26,4 @@ if __name__ == '__main__':
             print(extension," was loaded")
         except Exception as error:
             print('{} cannot be loaded. [{}]'.format(extension,error))
-    client.run(str(os.environ.get('BOT_TOKEN')))
+    client.run(str(os.environ('BOT_TOKEN')))
